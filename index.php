@@ -1,6 +1,6 @@
 <?php
 
-require 'application/lib/Dev.php'; //подключаю обработчик ошибок и вывод массива
+require 'application/lib/Dev.php'; //подключаю обработчик ошибок, вывод массива, метод debug
 
 use application\core\Router; //подклчаю класс рутер
 
