@@ -2,7 +2,7 @@
 
 require 'application/lib/Dev.php'; //подключаю обработчик ошибок, вывод массива, метод debug
 
-use application\core\Router; //подклчаю класс рутер
+use application\core\Router; //подключаю класс рутер
 
 
 spl_autoload_register(function ($class) { //функция срабатывает до вывода ошибки

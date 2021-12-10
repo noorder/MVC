@@ -41,15 +41,22 @@ class Router
 
 
 
-    public function run()
-    {
+    public function run() {
         if ($this->match()) {
-            echo '<p>controller: <b>' . $this->params['controller'] . '</b></p>';
-            echo '<p>action: <b>' . $this->params['action'] . '</b></p>';
+            $path = 'application\controllers\\' . ucfirst($this->params['controller']) . 'Controller';
+            if (class_exists($path)) {
+                $action = $this->params['action'] . 'Action';
+                if (method_exists($path, $action)) {
+                    $controller =   new $path($this->params);
+                    $controller->$action();
+                } else { 
+                    echo 'Не найден метод' . $action;
+                }
+            } else { 
+                echo 'не найден: ' . $path;
+            }
         } else {
             echo 'маршут не найден';
         }
     }
-
-    
 }
