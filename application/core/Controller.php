@@ -5,8 +5,7 @@ namespace application\core;
 use application\core\View;
 
 abstract class Controller
-{
-    public $path;
+{ 
     public $route;
     public $view;
 
@@ -14,5 +13,6 @@ abstract class Controller
     {
         $this->route = $route;
         $this->view = new View($route); //отправка роут в View.php
+        $this->before();
     }
 }

@@ -7,7 +7,7 @@
     </title>
 </head>
 
-<body>
+<body style="background: #000">
     <?php echo $content;    ?>
 </body>
 
