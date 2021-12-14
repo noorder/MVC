@@ -12,7 +12,6 @@ abstract class Controller
     public function __construct($route)
     {
         $this->route = $route;
-        $this->view = new View($route); //отправка роут в View.php
-        $this->before();
+        $this->view = new View($route); //отправка роут в View.php  
     }
 }

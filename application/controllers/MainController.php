@@ -8,6 +8,11 @@ class MainController extends Controller
 {
     public function indexAction()
     {
-        $this->view->render('Главная страница');
+        $vars = [
+            'name' => 'Вася',
+            'age' => 88,
+            'array' => [1, 2, 3]
+        ];
+        $this->view->render('Главная страница', $vars);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace application\core;
 
+use application\core\View;
+
 class Router
 {
 
@@ -50,13 +52,13 @@ class Router
                     $controller =   new $path($this->params);
                     $controller->$action();
                 } else { 
-                    echo 'Не найден метод' . $action;
+                    View::errorCode(404);
                 }
             } else { 
-                echo 'не найден: ' . $path;
+                View::errorCode(403);
             }
         } else {
-            echo 'маршут не найден';
+            View::errorCode(404);
         }
     }
 }
