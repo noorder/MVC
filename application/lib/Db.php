@@ -2,6 +2,7 @@
 
 namespace application\lib;
 
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 use PDO;
 
 class Db
@@ -14,21 +15,29 @@ class Db
         $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['name'] . '', $config['user'], $config['password']);
     }
 
-    public function query($sql)
+    public function query($sql, $params = [])
     {
-        $query = $this->db->query($sql);
-        return $query;
+        $stmt = $this->db->prepare($sql);
+        if (!empty($params)){
+            foreach ($params as $key => $val) {
+                $stmt->bindValue(':'.$key, $val); //биндю(цепляю) ключ к значению
+            }
+        }
+        $stmt -> execute();
+        return $stmt;
+       
+        
     }
 
-    public function row($sql)
+    public function row($sql, $params = [])
     {
-        $result = $this->query($sql);
+        $result = $this->query($sql, $params);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function column($sql)
+    public function column($sql, $params = [])
     {
-        $result = $this->query($sql);
-        return $result->fetchColumn();
+        $result = $this->query($sql, $params);
+        return $result->fetchColumn(); //Возвращает данные одного столбца следующей строки результирующей таблицы. Если в результате запроса строк больше нет, функция вернёт false.
     }
 }
