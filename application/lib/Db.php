@@ -2,7 +2,6 @@
 
 namespace application\lib;
 
-use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 use PDO;
 
 class Db
@@ -18,15 +17,13 @@ class Db
     public function query($sql, $params = [])
     {
         $stmt = $this->db->prepare($sql);
-        if (!empty($params)){
+        if (!empty($params)) {
             foreach ($params as $key => $val) {
-                $stmt->bindValue(':'.$key, $val); //биндю(цепляю) ключ к значению
+                $stmt->bindValue(':' . $key, $val); //биндю(цепляю) ключ к значению
             }
         }
-        $stmt -> execute();
+        $stmt->execute();
         return $stmt;
-       
-        
     }
 
     public function row($sql, $params = [])

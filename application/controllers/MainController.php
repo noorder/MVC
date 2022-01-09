@@ -9,8 +9,9 @@ class MainController extends Controller
     public function indexAction()
     {
         $result = $this->model->getNews();
-        debug($result);
-        $this->view->render('Главная страница');
+        $vars = [
+            'news' => $result,
+        ];
+        $this->view->render('Главная страница', $vars);
     }
 }
- 

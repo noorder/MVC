@@ -26,7 +26,7 @@ class View
             require 'application/views/layouts/' . $this->layout . '.php'; //создаю полный пуь для выбора шаблона
         } else 'Вид не найден ' . $this->path;
     }
-    
+
 
     public static function errorCode($code)
     {
@@ -42,5 +42,15 @@ class View
     {
         header('location: ' . $url);
         exit;
+    }
+
+    public function message($status, $message)
+    {
+        exit(json_encode(['status' => $status, 'message' => $message]));
+    }
+
+    public function location($url)
+    {
+        exit(json_encode(['url' => $url]));
     }
 }
